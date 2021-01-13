@@ -12,7 +12,7 @@ uzupelnij_plansze_wenzami(wszystko);
 wypisz(wszystko->plansza);
 int skucha;
 char znak;
-for(int p=0;p<10;p++){
+for(int p=0;p<100;p++){
     if (p%2==0){ //rusza sie pierwszy
      printf("Kolej na pierwszego gracza.\n");
      scanf(" %c",&znak);
