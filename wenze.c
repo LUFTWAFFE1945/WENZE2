@@ -144,7 +144,7 @@ free(glowa);
 
 
 int gora1(baza*wszystko){
-if(wszystko->waz1->r==M-1){
+if(wszystko->waz1->r==0){
     printf("ściana byczku\n");
     return(1);
 }
@@ -155,6 +155,32 @@ else if(wszystko->plansza[wszystko->waz1->r-1][wszystko->waz1->c]=='X'){
 else if(wszystko->plansza[wszystko->waz1->r-1][wszystko->waz1->c]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
+}
+
+if(wszystko->plansza[wszystko->waz1->r-1][wszystko->waz1->c]=='*'){
+printf("+1 byczku\n");
+if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r-1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r-1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    usun_ostatni_element1(wszystko);
+    }
+return(2);
 }
 if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz1;
@@ -177,10 +203,6 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz1=nowa_glowa;
     usun_ostatni_element1(wszystko);
     }
-if(wszystko->plansza[wszystko->waz1->r-1][wszystko->waz1->c]=='*'){
-printf("+1 byczku\n");
-return(2);
-}
 return(0);
 }
 
@@ -198,6 +220,9 @@ else if(wszystko->plansza[wszystko->waz1->r+1][wszystko->waz1->c]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz1->r+1][wszystko->waz1->c]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz1;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -219,10 +244,29 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz1=nowa_glowa;
     usun_ostatni_element1(wszystko);
     }
-if(wszystko->plansza[wszystko->waz1->r+1][wszystko->waz1->c]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r+1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r+1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    usun_ostatni_element1(wszystko);
+    }
 return(0);
 }
 
@@ -240,6 +284,9 @@ else if(wszystko->plansza[wszystko->waz1->r][wszystko->waz1->c-1]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz1->r][wszystko->waz1->c-1]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz1;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -261,10 +308,29 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz1=nowa_glowa;
     usun_ostatni_element1(wszystko);
     }
-if(wszystko->plansza[wszystko->waz1->r][wszystko->waz1->c-1]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = stara_glowa->c-1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = stara_glowa->c-1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    usun_ostatni_element1(wszystko);
+    }
 return(0);
 }
 
@@ -281,6 +347,9 @@ else if(wszystko->plansza[wszystko->waz1->r][wszystko->waz1->c+1]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz1->r][wszystko->waz1->c+1]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz1;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -302,10 +371,29 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz1=nowa_glowa;
     usun_ostatni_element1(wszystko);
     }
-if(wszystko->plansza[wszystko->waz1->r][wszystko->waz1->c+1]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = stara_glowa->c+1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = stara_glowa->c+1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz1=nowa_glowa;
+    usun_ostatni_element1(wszystko);
+    }
 return(0);
 }
 
@@ -324,6 +412,9 @@ else if(wszystko->plansza[wszystko->waz2->r-1][wszystko->waz2->c]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz2->r-1][wszystko->waz2->c]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz2;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -345,10 +436,29 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz2=nowa_glowa;
     usun_ostatni_element2(wszystko);
     }
-if(wszystko->plansza[wszystko->waz2->r-1][wszystko->waz2->c]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r-1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r-1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    usun_ostatni_element2(wszystko);
+    }
 return(0);
 }
 
@@ -365,6 +475,9 @@ else if(wszystko->plansza[wszystko->waz2->r+1][wszystko->waz2->c]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz2->r+1][wszystko->waz2->c]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz2;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -386,10 +499,29 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz2=nowa_glowa;
     usun_ostatni_element2(wszystko);
     }
-if(wszystko->plansza[wszystko->waz2->r+1][wszystko->waz2->c]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r+1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r+1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    usun_ostatni_element2(wszystko);
+    }
 return(0);
 }
 
@@ -406,6 +538,9 @@ else if(wszystko->plansza[wszystko->waz2->r][wszystko->waz2->c-1]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz2->r][(wszystko->waz2->c)-1]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz2;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -427,10 +562,29 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz2=nowa_glowa;
     usun_ostatni_element2(wszystko);
     }
-if(wszystko->plansza[wszystko->waz2->r][(wszystko->waz2->c)-1]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = (stara_glowa->c)-1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = (stara_glowa->c)-1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    usun_ostatni_element2(wszystko);
+    }
 return(0);
 }
 
@@ -447,6 +601,9 @@ else if(wszystko->plansza[wszystko->waz2->r][wszystko->waz2->c+1]=='Y'){
     printf("Wjechałeś w gracza2\n");
     return(1);
 }
+
+if(wszystko->plansza[wszystko->waz2->r][(wszystko->waz2->c)+1]=='*'){
+printf("+1 byczku\n");
 if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
     waz*stara_glowa=wszystko->waz2;
     waz*nowa_glowa = (waz*) malloc(sizeof(waz));
@@ -468,9 +625,28 @@ else{ //jeśli nie zjadl czyli ostatni sie usuwa
     wszystko->waz2=nowa_glowa;
     usun_ostatni_element2(wszystko);
     }
-if(wszystko->plansza[wszystko->waz2->r][(wszystko->waz2->c)+1]=='*'){
-printf("+1 byczku\n");
 return(2);
 }
+if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = (stara_glowa->c)+1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    }
+else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = stara_glowa->r;
+    nowa_glowa->c = (stara_glowa->c)+1;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    usun_ostatni_element2(wszystko);
+    }
 return(0);
 }

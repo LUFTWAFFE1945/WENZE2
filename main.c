@@ -18,6 +18,7 @@ for(int p=0;p<100;p++){
      scanf(" %c",&znak);
         if(znak=='w'){
         skucha = gora1(wszystko);
+        //printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -28,11 +29,12 @@ for(int p=0;p<100;p++){
             wszystko->zjadl1=1;
             }
             else if(skucha==0){
-            wszystko->zjadl2=0;
+            wszystko->zjadl1=0;
             }
         }
         else if(znak=='a'){
         skucha =lewo1(wszystko);
+        //printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -43,11 +45,12 @@ for(int p=0;p<100;p++){
             wszystko->zjadl1=1;
             }
             else if(skucha==0){
-            wszystko->zjadl2=0;
+            wszystko->zjadl1=0;
             }
         }
         else if(znak=='s'){
         skucha =dol1(wszystko);
+        //printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -58,11 +61,12 @@ for(int p=0;p<100;p++){
             wszystko->zjadl1=1;
             }
             else if(skucha==0){
-            wszystko->zjadl2=0;
+            wszystko->zjadl1=0;
             }
         }
         else if(znak=='d'){
         skucha =prawo1(wszystko);
+        //printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -73,7 +77,7 @@ for(int p=0;p<100;p++){
             wszystko->zjadl1=1;
             }
             else if(skucha==0){
-            wszystko->zjadl2=0;
+            wszystko->zjadl1=0;
             }
         }
     }
@@ -82,6 +86,7 @@ for(int p=0;p<100;p++){
     scanf(" %c",&znak);
         if(znak=='w'){
         skucha =gora2(wszystko);
+         //printf("skucha:%d\n",skucha);
         pokaz_liste_wenza(wszystko->waz2);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
@@ -98,6 +103,7 @@ for(int p=0;p<100;p++){
         }
         else if(znak=='a'){
         skucha =lewo2(wszystko);
+        //printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -113,6 +119,7 @@ for(int p=0;p<100;p++){
         }
         else if(znak=='s'){
         skucha =dol2(wszystko);
+        //printf("skucha:%d\n",skucha);        
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -127,9 +134,8 @@ for(int p=0;p<100;p++){
             }
         }
         else if(znak=='d'){
-        printf("czypoprzedniozjadl:%d\n",wszystko->zjadl2);
         skucha =prawo2(wszystko);
-        printf("skucha:%d\n",skucha);
+        //printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
