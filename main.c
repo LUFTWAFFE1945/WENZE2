@@ -10,7 +10,7 @@ baza*wszystko=tworzymy_baze();
 uzupelnij_plansze_jedzeniem(wszystko);
 uzupelnij_plansze_wenzami(wszystko);
 wypisz(wszystko->plansza);
-int skucha=0;
+int skucha;
 char znak;
 for(int p=0;p<10;p++){
     if (p%2==0){ //rusza sie pierwszy

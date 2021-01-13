@@ -1,6 +1,6 @@
 #include "wenze.h"
 
-waz * tworz_glowe(int r, int c){
+waz * tworz_glowe_poczatkowa(int r, int c){
 waz*snake = (waz*) malloc(sizeof(waz)); 
 snake->r = r;
 snake->c = c;
@@ -14,8 +14,8 @@ baza* tworzymy_baze(){
 baza*Sbaza = (baza*) malloc(sizeof(baza));
 Sbaza->zjadl1 =0;
 Sbaza->zjadl2 =0;
-Sbaza->waz1=tworz_glowe(0,0);
-Sbaza->waz2=tworz_glowe(M-1,N-1);
+Sbaza->waz1=tworz_glowe_poczatkowa(0,0);
+Sbaza->waz2=tworz_glowe_poczatkowa(M-1,N-1);
 return Sbaza;
 }
 
@@ -49,6 +49,9 @@ void zwolnij_weza(waz*snake) {
     waz *n;
     while (snake != NULL) {
         n = snake->nast;
+            if(snake->poprz!=NULL)
+        snake->poprz->nast=snake->nast;
+        snake->nast->poprz=snake->poprz;
         free(snake);
         snake = n;
     }
@@ -117,6 +120,16 @@ void pokaz_liste_wenza(waz*tesciowa){
 
 }
 
+void usun_ostatni_element2(baza*wszystko){
+waz*glowa=wszystko->waz2;
+while(glowa->nast!=NULL){
+    glowa = glowa->nast;
+}
+wszystko->plansza[glowa->r][glowa->c]=' ';
+glowa->poprz->nast=NULL;
+free(glowa);
+
+}
 
 
 
@@ -136,28 +149,36 @@ else if(wszystko->plansza[(wszystko->waz1->r)-1][wszystko->waz1->c]=='Y'){
 }
 else if(wszystko->plansza[(wszystko->waz1->r)-1][wszystko->waz1->c]=='*'){
 printf("bonus\n");
-    if(wszystko->zjadl1==1){ //jeśli zjada ale poprzednio tez zjadl czyli dodaje segment
+    if(wszystko->zjadl1==1){ //jeśli zjadł czyli dodaje segment
 
     }
-    else{ //jeśli zjada ale poprzednio nie zjadl czyli dodaje segment a ostatni usuwam
+    else{ //jeśli nie zjadl czyli dodaje segment a ostatni usuwam
 }
 return(2);
 }
-    if(wszystko->zjadl1==1){ //jeśli nie zjada ale poprzednio zjadl czyli ostatni zostaje
+    if(wszystko->zjadl1==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
 
     }
-    else{ //jeśli nie zjada ale poprzednio nie zjadl czyli ostatni sie usuwa
-    printf("dupa\n");
-    waz*snake = (waz*) malloc(sizeof(waz)); 
-    snake->r = wszystko->waz1->r-1;
-    snake->c = wszystko->waz1->c;
-    snake->nast = wszystko->waz1;                  
-    wszystko->waz1->poprz = snake;
-    wszystko->waz1=snake;
-    while(wszystko->waz1->nast != NULL){
-        wszystko->waz1 =wszystko->waz1->nast;
+    else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz1;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    printf("NOWA GLOWA X %d, Y %d",nowa_glowa->r,nowa_glowa->c);
+    nowa_glowa->r = (stara_glowa->r)-1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    nowa_glowa->poprz = NULL;                
+    waz*test=wszystko->waz1;
+    printf("NOWA GLOWA X %d, Y %d",nowa_glowa->r,nowa_glowa->c);
+       while(test != NULL){ //dajemy zaczep do nowej glowy w bazie
+        test =test->poprz;
       }
-      wszystko->waz1= NULL;
+      wszystko->waz1= test;
+      
+    while(test != NULL){
+        test =test->nast;
+      }
+      test= NULL; //usuwamy ostatni element
+
     }
 return(0);
 }
@@ -219,28 +240,26 @@ else if(wszystko->plansza[(wszystko->waz2->r)-1][wszystko->waz2->c]=='Y'){
 }
 else if(wszystko->plansza[(wszystko->waz2->r)-1][wszystko->waz2->c]=='*'){
 printf("bonus\n");
-    if(wszystko->zjadl2==1){ //jeśli zjada ale poprzednio tez zjadl czyli dodaje segment
+    if(wszystko->zjadl2==1){ //jeśli zjadł czyli dodaje segment
 
     }
-    else{ //jeśli zjada ale poprzednio nie zjadl czyli dodaje segment a ostatni usuwam
+    else{ //jeśli nie zjadl czyli dodaje segment a ostatni usuwam
 }
 return(2);
 }
-    if(wszystko->zjadl2==1){ //jeśli nie zjada ale poprzednio zjadl czyli ostatni zostaje
+    if(wszystko->zjadl2==1){ //jeśli zjadl czyli ostatni zostaje tam gdzie był
 
     }
-    else{ //jeśli nie zjada ale poprzednio nie zjadl czyli ostatni sie usuwa
-    printf("dupa\n");
-    waz*snake = (waz*) malloc(sizeof(waz)); 
-    snake->r = wszystko->waz2->r-1;
-    snake->c = wszystko->waz2->c;
-    snake->nast = wszystko->waz2;                  
-    wszystko->waz2->poprz = snake;
-    wszystko->waz2=snake;
-    while(wszystko->waz2->nast!=NULL){
-        wszystko->waz2 =wszystko->waz2->nast;
-      }
-      wszystko->waz2 = NULL;
+    else{ //jeśli nie zjadl czyli ostatni sie usuwa
+    waz*stara_glowa=wszystko->waz2;
+    waz*nowa_glowa = (waz*) malloc(sizeof(waz));
+    nowa_glowa->r = (stara_glowa->r)-1;
+    nowa_glowa->c = stara_glowa->c;
+    nowa_glowa->nast = stara_glowa; 
+    stara_glowa->poprz = nowa_glowa;
+    nowa_glowa->poprz = NULL;                    
+    wszystko->waz2=nowa_glowa;
+    usun_ostatni_element2(wszystko);
     }
 return(0);
 }
