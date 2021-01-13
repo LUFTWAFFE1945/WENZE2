@@ -395,6 +395,7 @@ return(0);
 }
 
 int prawo2(baza*wszystko){
+printf("czy zjadl:%d\n",wszystko->zjadl2);
 if(wszystko->waz2->c==N-1){
     printf("ściana baranie\n");
     return(1);

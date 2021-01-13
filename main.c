@@ -27,6 +27,9 @@ for(int p=0;p<100;p++){
             else if(skucha==2){
             wszystko->zjadl1=1;
             }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
+            }
         }
         else if(znak=='a'){
         skucha =lewo1(wszystko);
@@ -38,6 +41,9 @@ for(int p=0;p<100;p++){
             }
             else if(skucha==2){
             wszystko->zjadl1=1;
+            }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
             }
         }
         else if(znak=='s'){
@@ -51,6 +57,9 @@ for(int p=0;p<100;p++){
             else if(skucha==2){
             wszystko->zjadl1=1;
             }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
+            }
         }
         else if(znak=='d'){
         skucha =prawo1(wszystko);
@@ -62,6 +71,9 @@ for(int p=0;p<100;p++){
             }
             else if(skucha==2){
             wszystko->zjadl1=1;
+            }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
             }
         }
     }
@@ -80,6 +92,9 @@ for(int p=0;p<100;p++){
             else if(skucha==2){
             wszystko->zjadl2=1;
             }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
+            }
         }
         else if(znak=='a'){
         skucha =lewo2(wszystko);
@@ -91,6 +106,9 @@ for(int p=0;p<100;p++){
             }
             else if(skucha==2){
             wszystko->zjadl2=1;
+            }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
             } 
         }
         else if(znak=='s'){
@@ -104,9 +122,14 @@ for(int p=0;p<100;p++){
             else if(skucha==2){
             wszystko->zjadl2=1;
             }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
+            }
         }
         else if(znak=='d'){
+        printf("czypoprzedniozjadl:%d\n",wszystko->zjadl2);
         skucha =prawo2(wszystko);
+        printf("skucha:%d\n",skucha);
         uzupelnij_plansze_wenzami(wszystko);
         wypisz(wszystko->plansza);
             if(skucha==1){
@@ -115,6 +138,9 @@ for(int p=0;p<100;p++){
             }
             else if(skucha==2){
             wszystko->zjadl2=1;
+            }
+            else if(skucha==0){
+            wszystko->zjadl2=0;
             }
         }
     }
